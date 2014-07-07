@@ -209,5 +209,25 @@ class FastCSVHelper extends AppHelper {
             fputcsv($this->handle, $row, $this->delimiter, $this->enclosure);
         }
     }
+    
+    /**
+     * Set Headers.
+     * 
+     * @return void
+     */
+    public function setFlush() {
+        $this->setFilename($this->filename);
+        $this->setHeaders();
+    }
+
+    /**
+     * Flush a Row.
+     * 
+     * @param array $row
+     */
+    public function setRowFlush($row = array()) {
+        mb_convert_variables($this->to_encoding, $this->from_encoding, $row);
+        fputcsv($this->handle, $row, $this->delimiter, $this->enclosure);
+    }
 
 }
